@@ -14,7 +14,8 @@ it direct connect with client OS rater than browser
 Directory mangement 
   -mkdir()
   -rmdir()
-  -readdir()
+  -readdir()-depricated
+  -rm()
 -Metadata/Information 
   -start()
   -lstat()

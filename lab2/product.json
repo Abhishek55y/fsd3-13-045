@@ -1,0 +1,20 @@
+[
+  {
+    "id": 120,
+    "name": "HP- laptop",
+    "price": 120000,
+    "qty": 2
+  },
+  {
+    "id": 140,
+    "name": "books",
+    "price": 1200,
+    "qty": 5
+  },
+  {
+    "id": 140,
+    "name": "phone",
+    "price": 12000,
+    "qty": 4
+  }
+]
