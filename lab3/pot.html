@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>माटी — Mitti Ka Ghada</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #f7f0e5;
+      --cream-dark: #eadcc8;
+      --terracotta: #b95836;
+      --terracotta-dark: #873b25;
+      --brown: #38241b;
+      --brown-light: #765747;
+      --green: #536a43;
+      --white: #fffaf2;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--brown);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      border: 0;
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 76px;
+
+      padding: 0 7%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      z-index: 100;
+
+      background: rgba(247, 240, 229, 0.85);
+      backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid rgba(56, 36, 27, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-family: "Playfair Display", serif;
+      font-size: 23px;
+      font-weight: 700;
+    }
+
+    .brand-symbol {
+      width: 29px;
+      height: 29px;
+
+      background: var(--terracotta);
+
+      border-radius: 50% 50% 45% 45%;
+
+      position: relative;
+    }
+
+    .brand-symbol::after {
+      content: "";
+
+      position: absolute;
+
+      width: 13px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--cream);
+
+      top: 5px;
+      left: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+
+      font-size: 14px;
+      color: var(--brown-light);
+    }
+
+    .nav-links a:hover {
+      color: var(--terracotta);
+    }
+
+    .nav-cta {
+      background: var(--brown);
+      color: white;
+
+      padding: 11px 21px;
+
+      border-radius: 25px;
+
+      transition: 0.25s;
+    }
+
+    .nav-cta:hover {
+      background: var(--terracotta);
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+
+      max-width: 1450px;
+
+      margin: auto;
+
+      padding: 150px 7% 90px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      align-items: center;
+
+      gap: 70px;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .heritage {
+      display: inline-flex;
+
+      padding: 8px 14px;
+
+      border-radius: 30px;
+
+      background: #ead9c5;
+
+      color: var(--terracotta-dark);
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(60px, 7vw, 95px);
+
+      line-height: 0.94;
+
+      letter-spacing: -4px;
+
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      color: var(--terracotta);
+      font-style: italic;
+    }
+
+    .hero-description {
+      max-width: 500px;
+
+      color: var(--brown-light);
+
+      font-size: 17px;
+
+      line-height: 1.7;
+
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+    }
+
+    .primary {
+      background: var(--terracotta);
+
+      color: white;
+
+      padding: 15px 25px;
+
+      border-radius: 30px;
+
+      font-weight: 600;
+
+      transition: 0.25s;
+    }
+
+    .primary:hover {
+      background: var(--terracotta-dark);
+
+      transform: translateY(-3px);
+    }
+
+    .secondary {
+      background: transparent;
+
+      border: 1px solid #cdbba7;
+
+      padding: 15px 25px;
+
+      border-radius: 30px;
+
+      color: var(--brown);
+
+      font-weight: 600;
+
+      transition: 0.25s;
+    }
+
+    .secondary:hover {
+      background: white;
+    }
+
+    .hero-note {
+      margin-top: 30px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      font-size: 12px;
+
+      color: var(--brown-light);
+    }
+
+    .hero-note span {
+      color: var(--green);
+      font-size: 18px;
+    }
+
+
+    /* =========================
+       GHADA VISUAL
+    ========================= */
+
+    .ghada-stage {
+      height: 620px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      position: relative;
+    }
+
+    .sun {
+      position: absolute;
+
+      width: 440px;
+      height: 440px;
+
+      border-radius: 50%;
+
+      background: #ead2b3;
+
+      opacity: 0.8;
+    }
+
+    .ground {
+      position: absolute;
+
+      width: 350px;
+      height: 45px;
+
+      border-radius: 50%;
+
+      background: rgba(56, 36, 27, 0.17);
+
+      bottom: 65px;
+
+      filter: blur(12px);
+    }
+
+    .ghada {
+      width: 285px;
+      height: 380px;
+
+      position: relative;
+
+      z-index: 3;
+
+      border-radius:
+        48% 48% 38% 38% /
+        25% 25% 75% 75%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #77371f,
+          #b95836 18%,
+          #d27651 40%,
+          #a94d30 67%,
+          #71311e
+        );
+
+      box-shadow:
+
+        inset 18px 0 20px rgba(255,255,255,0.12),
+
+        inset -20px 0 30px rgba(0,0,0,0.2),
+
+        20px 30px 50px rgba(56,36,27,0.25);
+
+      animation: ghadaFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes ghadaFloat {
+
+      0%,100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    /* GHADA NECK */
+
+    .ghada-neck {
+      position: absolute;
+
+      width: 115px;
+      height: 95px;
+
+      top: -52px;
+      left: 85px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #78351f,
+          #bd5b38,
+          #8c3d25
+        );
+
+      border-radius: 45px 45px 15px 15px;
+    }
+
+    /* GHADA OPENING */
+
+    .ghada-opening {
+      position: absolute;
+
+      width: 118px;
+      height: 30px;
+
+      top: -60px;
+      left: 83px;
+
+      border-radius: 50%;
+
+      background: #57291b;
+
+      border: 7px solid #9b452a;
+
+      box-shadow:
+        inset 0 5px 7px rgba(0,0,0,0.35);
+    }
+
+    /* GHADA RIM */
+
+    .rim {
+      position: absolute;
+
+      width: 170px;
+      height: 26px;
+
+      left: 57px;
+      top: -22px;
+
+      border-radius: 50%;
+
+      border: 7px solid #a54b2e;
+
+      background: transparent;
+    }
+
+    /* POTTERY LINES */
+
+    .pot-line {
+      position: absolute;
+
+      left: 35px;
+      right: 35px;
+
+      height: 2px;
+
+      background: rgba(255,255,255,0.15);
+
+      border-radius: 50%;
+    }
+
+    .line1 {
+      top: 105px;
+    }
+
+    .line2 {
+      top: 120px;
+    }
+
+    .line3 {
+      top: 285px;
+    }
+
+    .line4 {
+      top: 300px;
+    }
+
+    /* TRADITIONAL PATTERN */
+
+    .pattern {
+      position: absolute;
+
+      left: 52px;
+      right: 52px;
+
+      top: 155px;
+
+      height: 90px;
+
+      border-top: 2px solid rgba(255,238,215,0.65);
+
+      border-bottom: 2px solid rgba(255,238,215,0.65);
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 12px;
+    }
+
+    .pattern span {
+      width: 12px;
+      height: 12px;
+
+      border: 2px solid #f5d6b6;
+
+      transform: rotate(45deg);
+    }
+
+    .pattern span:nth-child(2),
+    .pattern span:nth-child(4) {
+      width: 8px;
+      height: 8px;
+    }
+
+    /* GHADA LABEL */
+
+    .ghada-label {
+      position: absolute;
+
+      top: 265px;
+
+      width: 100%;
+
+      text-align: center;
+
+      color: #f7d9bd;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 23px;
+
+      letter-spacing: 2px;
+    }
+
+    .ghada-small {
+      position: absolute;
+
+      top: 298px;
+
+      width: 100%;
+
+      text-align: center;
+
+      color: rgba(255,230,210,0.7);
+
+      font-size: 7px;
+
+      letter-spacing: 3px;
+    }
+
+
+    /* FLOATING CARDS */
+
+    .info-card {
+      position: absolute;
+
+      z-index: 5;
+
+      background: rgba(255,250,242,0.85);
+
+       backdrop-filter: blur(15px); 
+
+      border: 1px solid rgba(255,255,255,0.8);
+
+      box-shadow: 0 20px 45px rgba(56,36,27,0.1);
+
+      padding: 15px 18px;
+
+      border-radius: 16px;
+
+      animation: cardFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes cardFloat {
+
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .card-one {
+      left: 4%;
+      top: 27%;
+    }
+
+    .card-two {
+      right: 2%;
+      bottom: 25%;
+
+      animation-delay: 1s;
+    }
+
+    .card-label {
+      font-size: 10px;
+
+      color: var(--brown-light);
+
+      margin-bottom: 4px;
+    }
+
+    .card-value {
+      font-family: "Playfair Display", serif;
+
+      font-size: 20px;
+
+      font-weight: 700;
+    }
+
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+      background: var(--brown);
+
+      color: var(--white);
+
+      padding: 110px 7%;
+
+      text-align: center;
+    }
+
+    .intro-inner {
+      max-width: 800px;
+
+      margin: auto;
+    }
+
+    .intro small {
+      color: #d79b7e;
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+    }
+
+    .intro h2 {
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(40px, 5vw, 65px);
+
+      line-height: 1;
+
+      margin: 20px 0;
+    }
+
+    .intro p {
+      color: #c9b7aa;
+
+      font-size: 16px;
+
+      line-height: 1.8;
+    }
+
+
+    /* =========================
+       BENEFITS
+    ========================= */
+
+    .benefits {
+      padding: 120px 7%;
+
+      max-width: 1300px;
+
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+
+      max-width: 650px;
+
+      margin: 0 auto 60px;
+    }
+
+    .section-title small {
+      color: var(--terracotta);
+
+      text-transform: uppercase;
+
+      font-size: 11px;
+
+      letter-spacing: 2px;
+
+      font-weight: 700;
+    }
+
+    .section-title h2 {
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(40px, 5vw, 60px);
+
+      line-height: 1;
+
+      margin: 15px 0;
+    }
+
+    .section-title p {
+      color: var(--brown-light);
+    }
+
+    .benefit-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+    .benefit {
+      background: var(--white);
+
+      border: 1px solid #eadfd2;
+
+      border-radius: 24px;
+
+      padding: 30px;
+
+      min-height: 270px;
+
+      transition: 0.3s;
+    }
+
+    .benefit:hover {
+      transform: translateY(-7px);
+
+      box-shadow: 0 25px 50px rgba(56,36,27,0.08);
+    }
+
+    .benefit-icon {
+      width: 48px;
+      height: 48px;
+
+      display: grid;
+      place-items: center;
+
+      background: #f1e3d2;
+
+      border-radius: 14px;
+
+      font-size: 21px;
+
+      margin-bottom: 45px;
+    }
+
+    .benefit h3 {
+      font-family: "Playfair Display", serif;
+
+      font-size: 22px;
+
+      margin-bottom: 10px;
+    }
+
+    .benefit p {
+      color: var(--brown-light);
+
+      font-size: 14px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================
+       PRODUCT
+    ========================= */
+
+    .product {
+      padding: 120px 7%;
+
+      background: #eadcc8;
+    }
+
+    .product-box {
+      max-width: 1100px;
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 70px;
+
+      align-items: center;
+    }
+
+    .product-image {
+      min-height: 480px;
+
+      border-radius: 30px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          #f0c9a3,
+          #d6a47d
+        );
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      overflow: hidden;
+
+      position: relative;
+    }
+
+    .mini-ghada {
+      width: 190px;
+      height: 280px;
+
+      border-radius:
+        50% 50% 38% 38% /
+        25% 25% 75% 75%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #843a23,
+          #c66440,
+          #a84a2e,
+          #74321f
+        );
+
+      box-shadow: 15px 20px 30px rgba(56,36,27,0.2);
+
+      position: relative;
+    }
+
+    .mini-ghada::before {
+      content: "";
+
+      position: absolute;
+
+      width: 85px;
+      height: 70px;
+
+      top: -42px;
+      left: 53px;
+
+      background: #9b452b;
+
+      border-radius: 35px 35px 8px 8px;
+    }
+
+    .product-info small {
+      color: var(--terracotta);
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+    .product-info h2 {
+      font-family: "Playfair Display", serif;
+
+      font-size: 52px;
+
+      line-height: 1;
+
+      margin: 15px 0;
+    }
+
+    .product-info p {
+      color: var(--brown-light);
+
+      line-height: 1.8;
+
+      margin-bottom: 25px;
+    }
+
+    .price {
+      font-family: "Playfair Display", serif;
+
+      font-size: 35px;
+
+      margin-bottom: 20px;
+    }
+
+    .price span {
+      font-family: "DM Sans", sans-serif;
+
+      color: var(--brown-light);
+
+      font-size: 13px;
+    }
+
+
+    /* =========================
+       QUOTE
+    ========================= */
+
+    .quote {
+      padding: 130px 7%;
+
+      text-align: center;
+
+      background: var(--white);
+    }
+
+    .quote-mark {
+      font-family: "Playfair Display", serif;
+
+      color: var(--terracotta);
+
+      font-size: 70px;
+
+      line-height: 0.5;
+    }
+
+    .quote h2 {
+      max-width: 850px;
+
+      margin: 25px auto;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(35px, 5vw, 58px);
+
+      line-height: 1.05;
+    }
+
+    .quote p {
+      color: var(--brown-light);
+
+      font-size: 13px;
+    }
+
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      padding: 120px 7%;
+
+      background: var(--terracotta);
+
+      color: white;
+
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(45px, 6vw, 75px);
+
+      line-height: 0.95;
+
+      max-width: 750px;
+
+      margin: auto;
+    }
+
+    .cta p {
+      max-width: 500px;
+
+      margin: 25px auto 30px;
+
+      color: #f4d9ca;
+    }
+
+    .cta .primary {
+      background: white;
+
+      color: var(--terracotta);
+    }
+
+    .cta .primary:hover {
+      background: var(--cream);
+
+      color: var(--terracotta-dark);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--brown);
+
+      color: #b9a69a;
+
+      padding: 35px 7%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      font-size: 12px;
+    }
+
+    footer .brand {
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+
+      gap: 25px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+      }
+
+      .hero-content {
+        margin: auto;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons,
+      .hero-note {
+        justify-content: center;
+      }
+
+      .benefit-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .product-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    @media (max-width: 600px) {
+
+      nav {
+        padding: 0 5%;
+      }
+
+      .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .hero h1 {
+        font-size: 58px;
+
+        letter-spacing: -2px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons button {
+        width: 100%;
+      }
+
+      .ghada-stage {
+        transform: scale(0.78);
+
+        margin: -60px 0;
+      }
+
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .product-info h2 {
+        font-size: 42px;
+      }
+
+      footer {
+        flex-direction: column;
+
+        gap: 20px;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- NAVIGATION -->
+
+  <nav>
+
+    <a href="#" class="brand">
+
+      <span class="brand-symbol"></span>
+
+      माटी
+
+    </a>
+
+    <div class="nav-links">
+
+      <a href="#story">Our Story</a>
+
+      <a href="#benefits">Why Ghada</a>
+
+      <a href="#product">The Ghada</a>
+
+    </div>
+
+    <button class="nav-cta" onclick="orderGhada()">
+      Order now
+    </button>
+
+  </nav>
+
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="heritage">
+        HANDCRAFTED IN INDIA
+      </div>
+
+      <h1>
+        Thandak<br />
+        <span>mitti ki.</span>
+      </h1>
+
+      <p class="hero-description">
+        The timeless Indian ghada, reimagined for modern homes.
+        Naturally cool water, handcrafted from earth, and made
+        with the wisdom of generations.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button
+          class="primary"
+          onclick="orderGhada()"
+        >
+          Get your Ghada — ₹1,499
+        </button>
+
+        <button
+          class="secondary"
+          onclick="document.getElementById('story').scrollIntoView()"
+        >
+          Discover the story →
+        </button>
+
+      </div>
+
+      <div class="hero-note">
+
+        <span>✦</span>
+
+        100% natural terracotta · Zero electricity
+
+      </div>
+
+    </div>
+
+
+
+    <!-- GHADA -->
+
+    <div class="ghada-stage">
+
+      <div class="sun"></div>
+
+      <div class="ground"></div>
+
+      <div class="info-card card-one">
+
+        <div class="card-label">
+          NATURAL COOLING
+        </div>
+
+        <div class="card-value">
+          ~5°C cooler
+        </div>
+
+      </div>
+
+
+      <div class="info-card card-two">
+
+        <div class="card-label">
+          MATERIAL
+        </div>
+
+        <div class="card-value">
+          Pure Mitti
+        </div>
+
+      </div>
+
+
+      <div class="ghada">
+
+        <div class="ghada-neck"></div>
+
+        <div class="ghada-opening"></div>
+
+        <div class="rim"></div>
+
+        <div class="pot-line line1"></div>
+
+        <div class="pot-line line2"></div>
+
+        <div class="pot-line line3"></div>
+
+        <div class="pot-line line4"></div>
+
+        <div class="pattern">
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
+
+        <div class="ghada-label">
+          माटी
+        </div>
+
+        <div class="ghada-small">
+          PURE · NATURAL · INDIAN
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- STORY -->
+
+  <section class="intro" id="story">
+
+    <div class="intro-inner">
+
+      <small>
+        मिट्टी से जुड़ी कहानी
+      </small>
+
+      <h2>
+        Some things don't<br />
+        need an upgrade.
+      </h2>
+
+      <p>
+        For centuries, the Indian ghada has turned ordinary
+        drinking water into naturally cool, refreshing water.
+        No electricity. No chemicals. No complicated technology.
+        Just porous clay, air and an ancient understanding
+        of nature.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- BENEFITS -->
+
+  <section class="benefits" id="benefits">
+
+    <div class="section-title">
+
+      <small>
+        Why Ghada
+      </small>
+
+      <h2>
+        Nature knows<br />
+        best.
+      </h2>
+
+      <p>
+        A simpler, more natural way to keep your drinking
+        water fresh and cool.
+      </p>
+
+    </div>
+
+
+    <div class="benefit-grid">
+
+
+      <article class="benefit">
+
+        <div class="benefit-icon">
+          ❄
+        </div>
+
+        <h3>
+          Naturally cool
+        </h3>
+
+        <p>
+          Tiny pores in the clay allow water to evaporate
+          slowly from the surface, naturally cooling the
+          water inside.
+        </p>
+
+      </article>
+
+
+      <article class="benefit">
+
+        <div class="benefit-icon">
+          🌱
+        </div>
+
+        <h3>
+          Earth friendly
+        </h3>
+
+        <p>
+          Made from natural clay and designed to return
+          to the earth. No plastic. No electricity.
+        </p>
+
+      </article>
+
+
+      <article class="benefit">
+
+        <div class="benefit-icon">
+          👐
+        </div>
+
+        <h3>
+          Handcrafted
+        </h3>
+
+        <p>
+          Every ghada carries subtle variations that make
+          it uniquely yours — shaped by skilled artisans.
+        </p>
+
+      </article>
+
+
+      <article class="benefit">
+
+        <div class="benefit-icon">
+          💧
+        </div>
+
+        <h3>
+          Fresh water
+        </h3>
+
+        <p>
+          Clay naturally interacts with stored water,
+          creating a traditional drinking experience.
+        </p>
+
+      </article>
+
+
+      <article class="benefit">
+
+        <div class="benefit-icon">
+          🇮🇳
+        </div>
+
+        <h3>
+          Made in India
+        </h3>
+
+        <p>
+          Inspired by India's rich pottery traditions and
+          crafted with local materials.
+        </p>
+
+      </article>
+
+
+      <article class="benefit">
+
+        <div class="benefit-icon">
+          ♡
+        </div>
+
+        <h3>
+          Built for generations
+        </h3>
+
+        <p>
+          A simple object designed to become part of your
+          kitchen, your family and your daily rituals.
+        </p>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- PRODUCT -->
+
+  <section class="product" id="product">
+
+    <div class="product-box">
+
+      <div class="product-image">
+
+        <div class="mini-ghada"></div>
+
+      </div>
+
+
+      <div class="product-info">
+
+        <small>
+          The original
+        </small>
+
+        <h2>
+          माटी Ghada
+        </h2>
+
+        <p>
+          A 10-litre handcrafted terracotta water pot with
+          a traditional form and a clean, minimal finish.
+          Made for everyday Indian homes.
+        </p>
+
+        <div class="price">
+          ₹1,499
+          <span> · Free delivery</span>
+        </div>
+
+        <button
+          class="primary"
+          onclick="orderGhada()"
+        >
+          Add to home →
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- QUOTE -->
+
+  <section class="quote">
+
+    <div class="quote-mark">
+      “
+    </div>
+
+    <h2>
+      “Paani wahi,<br />
+      par swaad mitti ka.”
+    </h2>
+
+    <p>
+      The taste of water, the way nature intended.
+    </p>
+
+  </section>
+
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <h2>
+      Bring a little<br />
+      mitti home.
+    </h2>
+
+    <p>
+      Replace another plastic bottle with something
+      timeless, natural and beautifully Indian.
+    </p>
+
+    <button
+      class="primary"
+      onclick="orderGhada()"
+    >
+      Order your Ghada
+    </button>
+
+  </section>
+
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="brand">
+
+      <span class="brand-symbol"></span>
+
+      माटी
+
+    </div>
+
+    <div>
+      © 2026 माटी · Made with मिट्टी & प्यार
+    </div>
+
+    <div class="footer-links">
+
+      <a href="#">Instagram</a>
+
+      <a href="#">Contact</a>
+
+      <a href="#">Shipping</a>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    function orderGhada() {
+
+      alert(
+        "माटी Ghada\n\n" +
+        "₹1,499\n\n" +
+        "Thank you for choosing मिट्टी over plastic! 🏺"
+      );
+
+    }
+
+
+    // Reveal animations
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.style.opacity = "1";
+
+              entry.target.style.transform =
+                "translateY(0)";
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        ".benefit, .product-box, .quote-mark, .quote h2"
+      )
+      .forEach((element) => {
+
+        element.style.opacity = "0";
+
+        element.style.transform =
+          "translateY(30px)";
+
+        element.style.transition =
+          "opacity 0.8s ease, transform 0.8s ease";
+
+        observer.observe(element);
+
+      });
+
+  </script>
+
+</body>
+</html>
