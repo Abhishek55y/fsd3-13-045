@@ -5,7 +5,7 @@ import {
   deleteProduct,
   getProductById,
   updateProduct,
-} from "./products.js";
+} from "./product.js";
 
 const server = http.createServer((req, res) => {
   if (req.url === "/api/v1/products" && req.method === "GET") {
@@ -31,8 +31,8 @@ const server = http.createServer((req, res) => {
       res.statusCode = 201;
       res.end(JSON.stringify({ msg: "product added", data: item }));
     });
-  } else if (req.url.startsWith("/products/") && req.method === "PUT") {
-    const productID = req.url.split("/").pop();
+  } else if (req.url.startsWith("/api/v1/products/") && req.method === "PUT") {
+    const productID = Number(req.url.split("/").pop());
     console.log("Update Product id:", productID);
     let body = "";
     req.on("data", (chunk) => {
