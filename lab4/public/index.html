@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova — Your day, beautifully organized</title>
+<style>
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0a0a0f; }
+.app { min-height: 100vh; background: light-dark(#f7f7fb,#09090d); color: light-dark(#111116,#f6f6fb); overflow: hidden; }
+.container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+nav { height: 76px; display:flex; align-items:center; justify-content:space-between; }
+.logo { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.03em; font-size:21px; }
+.logo-mark { width:34px; height:34px; border-radius:11px; display:grid; place-items:center; background:#111; color:#fff; box-shadow:0 8px 22px #1112; }
+.nav-links { display:flex; gap:28px; align-items:center; font-size:14px; color:light-dark(#5c5c67,#aaaab6); }
+.nav-links a { color:inherit; text-decoration:none; }
+.nav-links a:hover { color:light-dark(#111,#fff); }
+.nav-btn { border:0; background:light-dark(#111,#fff); color:light-dark(#fff,#111); padding:11px 17px; border-radius:999px; font-weight:700; cursor:pointer; }
+.hero { padding:72px 0 85px; display:grid; grid-template-columns: 1.05fr .95fr; gap:55px; align-items:center; }
+.eyebrow { display:inline-flex; align-items:center; gap:8px; padding:7px 11px; border:1px solid light-dark(#dddde6,#2a2a34); background:light-dark(#fff,#111117); border-radius:999px; font-size:12px; font-weight:700; color:#7657ff; }
+.dot { width:7px; height:7px; border-radius:50%; background:#7657ff; box-shadow:0 0 0 4px #7657ff22; }
+h1 { font-size:clamp(48px,7vw,78px); line-height:.96; letter-spacing:-.065em; margin:22px 0 20px; max-width:700px; }
+.gradient { background:linear-gradient(100deg,#7a5cff,#c14cff 45%,#ff6d9c); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hero p { max-width:570px; font-size:18px; line-height:1.65; color:light-dark(#60606c,#aaaab7); margin:0 0 30px; }
+.actions { display:flex; gap:12px; flex-wrap:wrap; }
+.primary { border:0; padding:14px 20px; border-radius:14px; background:#111; color:#fff; font-weight:800; cursor:pointer; box-shadow:0 12px 30px #1112; }
+.secondary { border:1px solid light-dark(#d9d9e2,#30303a); padding:13px 19px; border-radius:14px; background:light-dark(#fff,#111117); color:inherit; font-weight:750; cursor:pointer; }
+.trust { margin-top:25px; font-size:12px; color:light-dark(#8b8b95,#777782); }
+.phone-wrap { position:relative; display:flex; justify-content:center; }
+.glow { position:absolute; width:370px; height:370px; border-radius:50%; background:radial-gradient(circle,#7c5cff55,transparent 68%); filter:blur(4px); }
+.phone { width:300px; height:610px; border-radius:42px; background:#111116; padding:9px; position:relative; box-shadow:0 35px 90px #0005, inset 0 0 0 1px #fff2; transform:rotate(3deg); }
+.screen { height:100%; border-radius:35px; overflow:hidden; background:linear-gradient(155deg,#f5f2ff,#fff 48%,#f2efff); color:#14141a; padding:18px; }
+.notch { width:96px; height:24px; border-radius:0 0 16px 16px; background:#111116; position:absolute; top:9px; left:50%; transform:translateX(-50%); z-index:2; }
+.status { display:flex; justify-content:space-between; font-size:10px; font-weight:800; margin:2px 3px 24px; }
+.greeting { font-size:12px; color:#777481; }
+.app-title { font-size:26px; font-weight:850; letter-spacing:-.04em; margin-top:3px; }
+.card { background:#fff; border:1px solid #e8e4f2; border-radius:20px; padding:15px; margin-top:14px; box-shadow:0 10px 25px #4d3b7d10; }
+.card-top { display:flex; justify-content:space-between; font-size:11px; color:#777481; }
+.big { font-size:34px; font-weight:850; margin:8px 0; letter-spacing:-.05em; }
+.progress { height:8px; background:#ece9f3; border-radius:20px; overflow:hidden; }
+.progress i { display:block; width:74%; height:100%; background:linear-gradient(90deg,#755cff,#c14cff); border-radius:20px; }
+.mini-row { display:flex; gap:8px; margin-top:14px; }
+.mini { flex:1; background:#f7f5fb; border-radius:15px; padding:12px; font-size:10px; }
+.mini strong { display:block; font-size:15px; margin-top:5px; }
+.section { padding:95px 0; }
+.section-head { text-align:center; max-width:680px; margin:0 auto 42px; }
+.section-head h2 { font-size:42px; letter-spacing:-.055em; margin:0 0 12px; }
+.section-head p { color:light-dark(#70707b,#9c9ca8); line-height:1.6; margin:0; }
+.features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.feature { padding:26px; border:1px solid light-dark(#e4e4ec,#282832); background:light-dark(#fff,#101015); border-radius:24px; min-height:220px; }
+.icon { width:42px; height:42px; border-radius:13px; display:grid; place-items:center; background:#7657ff15; color:#7657ff; font-size:20px; }
+.feature h3 { margin:22px 0 9px; font-size:18px; letter-spacing:-.02em; }
+.feature p { color:light-dark(#73737e,#a3a3ad); line-height:1.6; font-size:14px; margin:0; }
+.banner { border-radius:30px; padding:52px; background:linear-gradient(120deg,#17131f,#2a1c3e); color:#fff; display:flex; justify-content:space-between; align-items:center; gap:30px; }
+.banner h2 { margin:0 0 8px; font-size:36px; letter-spacing:-.05em; }
+.banner p { margin:0; color:#c7c0d3; line-height:1.6; }
+footer { padding:35px 0 45px; color:light-dark(#777781,#85858f); font-size:13px; display:flex; justify-content:space-between; gap:20px; }
+.toast { position:fixed; right:22px; bottom:22px; background:#111; color:#fff; padding:13px 17px; border-radius:13px; font-size:13px; box-shadow:0 12px 35px #0004; opacity:0; transform:translateY(15px); pointer-events:none; transition:.25s; }
+.toast.show { opacity:1; transform:translateY(0); }
+@media (max-width: 800px) { .container { width:min(100% - 28px, 680px); } .nav-links { display:none; } .hero { grid-template-columns:1fr; padding-top:45px; text-align:center; } .hero p { margin-left:auto; margin-right:auto; } .actions { justify-content:center; } .phone { width:270px; height:550px; } .features { grid-template-columns:1fr; } .banner { flex-direction:column; text-align:center; padding:36px 25px; } footer { flex-direction:column; } }
+</style>
+</head>
+<body>
+<div class="app" id="top">
+  <div class="container">
+    <nav>
+      <div class="logo"><span class="logo-mark">N</span> nova</div>
+      <div class="nav-links"><a href="#features">Features</a><a href="#why">Why Nova</a><a href="#download">Download</a></div>
+      <button class="nav-btn" onclick="showToast('Download link coming soon ✨')">Get the app</button>
+    </nav>
+    <main>
+      <section class="hero">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> Meet your new everyday mobile</span>
+          <h1>Everything you need.<br><span class="gradient">Nothing in the way.</span></h1>
+          <p>Nova brings your tasks, ideas, habits, and important moments into one beautifully simple mobile experience—so you can focus on what matters.</p>
+          <div class="actions"><button class="primary" onclick="showToast('App Store preview selected')"> App Store</button><button class="secondary" onclick="showToast('Google Play preview selected')">▶ Google Play</button></div>
+          <div class="trust">Free to start · Private by design · Works across your devices</div>
+        </div>
+        <div class="phone-wrap" aria-label="Nova app preview">
+          <div class="glow"></div>
+          <div class="phone"><div class="notch"></div><div class="screen">
+            <div class="status"><span>9:41</span><span>● ● ▰</span></div>
+            <div class="greeting">Tuesday, September 29</div><div class="app-title">Good morning, Alex.</div>
+            <div class="card"><div class="card-top"><span>Today</span><span>74%</span></div><div class="big">3 priorities</div><div class="progress"><i></i></div></div>
+            <div class="mini-row"><div class="mini">Focus<strong>2h 40m</strong></div><div class="mini">Streak<strong>12 days</strong></div></div>
+            <div class="card"><div class="card-top"><span>Next up</span><span>10:30</span></div><strong style="display:block;margin-top:9px">Design review</strong><div style="font-size:10px;color:#777;margin-top:5px">Project Nova · 45 min</div></div>
+            <div class="card"><div class="card-top"><span>Quick note</span><span>＋</span></div><div style="font-size:12px;margin-top:10px">“Make space for better ideas.”</div></div>
+          </div></div>
+        </div>
+      </section>
+      <section class="section" id="features">
+        <div class="section-head"><h2>Designed around your day.</h2><p>Nova removes the noise and gives the essentials a calm, intelligent home on your phone.</p></div>
+        <div class="features">
+          <article class="feature"><div class="icon">✦</div><h3>One calm dashboard</h3><p>See priorities, schedules, habits, and notes at a glance without jumping between apps.</p></article>
+          <article class="feature"><div class="icon">⌁</div><h3>Smart focus</h3><p>Turn any task into a focused session with gentle reminders that keep you moving without getting in your way.</p></article>
+          <article class="feature"><div class="icon">↗</div><h3>Private by default</h3><p>Your personal space stays yours. Simple controls make it easy to understand and manage your data.</p></article>
+        </div>
+      </section>
+      <section class="section" id="why">
+        <div class="banner"><div><h2>Your day, in your hands.</h2><p>Start small. Organize what matters. Let Nova handle the rest.</p></div><button class="primary" onclick="showToast('Welcome to Nova — your preview is ready')">Start with Nova →</button></div>
+      </section>
+    </main>
+    <footer id="download"><span>© 2026 Nova Mobile</span><span>Made for people who want less noise.</span></footer>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+function showToast(message){ const t=document.getElementById('toast'); t.textContent=message; t.classList.add('show'); clearTimeout(window.toastTimer); window.toastTimer=setTimeout(()=>t.classList.remove('show'),2200); }
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});}));
+</script>
+</body>
+</html>
