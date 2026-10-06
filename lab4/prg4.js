@@ -17,7 +17,39 @@ app.get("/api/products",(req,res)=>{
     );
 
     res.status(200).json({count:products.length,data:item})
-})
+});
+//  Query string / request query must be before req parameter or dynamic url
+app.get("/api/products/query",(req,res)=>{
+    const{search,limit,mp,mr}=req.query;
+    console.log("search",search);
+    console.log("limit",limit);
+    let sortedProducts= [...products] // copy all products
+    if(mp){
+        sortedProducts=sortedProducts.filter((item)=>item.price<=Number(mp))
+    }
+    if (mr) {
+      sortedProducts = sortedProducts.filter(
+        (item) => item.price <= Number(mr),
+      );
+    }
+     if(search){
+        sortedProducts=sortedProducts.filter((item)=>item.name.toLowerCase().startsWith(search.toLowerCase()),);
+     }
+     if(limit){
+        sortedProducts=sortedProducts.slice(0,Number(limit))
+     }
+     if(sortedProducts.length<1){
+        res
+        .status(200)
+        .json({"data":[],msg:'No product matched your search criteria'})
+     }
+     else{
+        res
+        .status(200)
+        .json({count: sortedProducts.length,data:sortedProducts});
+     }
+    res.send("Product search page")
+});
 app.get("/api/products/:id",(req,res)=>{
     const {id}=req.params;
     const p=products.find((item)=>item.id===Number(id));
@@ -27,7 +59,7 @@ app.get("/api/products/:id",(req,res)=>{
         res.status(404).json({status:false,msg:`product not found with id:${id}`});
     // res.send(`will show product id: ${id}`);
 });
-
+//  Query string / request query must be before req parameter or dynamic url
 app.use((req, res) => {
   res.status(404).send("route not found");
 });
