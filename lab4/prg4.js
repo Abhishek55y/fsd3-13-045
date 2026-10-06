@@ -59,6 +59,25 @@ app.get("/api/products/:id",(req,res)=>{
         res.status(404).json({status:false,msg:`product not found with id:${id}`});
     // res.send(`will show product id: ${id}`);
 });
+  app.get("api/products/:id/reviews",(req,res)=>{
+    res.send("return all review of particular product id")
+  });
+  app.get("api/products/:id/reviews/:revid",(req,res)=>{
+    const {id,revid}=req.params;
+    const product=products.find((item)=>item.id===Number(id))
+    if(!product){
+        res.send(`Product not found with id${id}`);
+        return;
+    }
+    review=product.reviews.map((item)=>item.id===Number(revid));
+    if(!review){
+        res.send(`invalid review id : $ {revid} for product id & {id}`);
+        return;
+    }
+    return res.status(200).send(review);
+  })
+
+
 //  Query string / request query must be before req parameter or dynamic url
 app.use((req, res) => {
   res.status(404).send("route not found");
